@@ -34,6 +34,7 @@ public:
 	void LoadAnimationAsset(const std::wstring strFilePath);
 	void Update(float fTimeElapsed);
 	void Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat);
+	void Render(D2D1_MATRIX_3X2_F cameraMat);
 	void SetAnimation(int index, bool mirror);
 
 	AABB GetBound();

@@ -84,11 +84,15 @@ void Scene::Render(D2DRenderer* _render)
 
 
 	for (auto g : m_GameObjects) {
-		if (!g->spriteAnim) continue;
+		/*if (!g->spriteAnim) continue;
 		AABB lab = g->spriteAnim->GetBound();
 		bool check = camAABB.CheckIntersect(lab);
 		if (check) {
 			g->Render(cameraMat);
+		}*/
+
+		for (auto cRender : g->components) {
+			cRender->Render(cameraMat);
 		}
 	}
 }

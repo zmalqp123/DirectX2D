@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Player">
+      <UniqueIdentifier>{06c23e18-6e8f-4a59-866a-d6d1ef4e8bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item">
+      <UniqueIdentifier>{494700b7-7c13-4082-923e-aecc28f6ca85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Generator">
+      <UniqueIdentifier>{4e728799-cefd-4f9c-9621-99c33ab2a722}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColliderDemo.cpp">
@@ -24,10 +33,28 @@
     <ClCompile Include="framework.h">
       <Filter>헤더 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DropIt.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>소스 파일\Generator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderDemo.h">
       <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DropIt.h">
+      <Filter>소스 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
+      <Filter>소스 파일\Generator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

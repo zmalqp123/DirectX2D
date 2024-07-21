@@ -42,6 +42,7 @@ bool BoxCollider::isCollide(Collider* collider)
 
 void BoxCollider::Render(D2D1_MATRIX_3X2_F cameraMat)
 {
+	if (gameObject->isActive == false) return;
 	auto pRenderTarget = &D2DRenderer::getRenderTarget();
 
 	D2D1_MATRIX_3X2_F m_ScreenTransform =

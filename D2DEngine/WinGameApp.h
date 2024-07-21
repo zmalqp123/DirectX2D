@@ -3,10 +3,10 @@
 #include "DeltaTime.h"
 #include "D2DRenderer.h"
 
-//#include <d2d1.h>
+#include <d2d1.h>
 //#include <d2d1helper.h>
-//#include <dwrite.h>
-//#include <wincodec.h>
+#include <dwrite.h>
+#include <wincodec.h>
 
 #pragma comment(lib, "d2d1.lib") // Direct2D 라이브러리 링크
 

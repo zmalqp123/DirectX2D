@@ -14,9 +14,8 @@ class SpriteAnimation;
 
 class GameObject : public Object
 {
-private:
-	bool isActive = true;
 public:
+	bool isActive = true;
 	Transform* transform = nullptr;
 	SpriteAnimation* spriteAnim = nullptr;
 

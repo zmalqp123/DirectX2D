@@ -62,6 +62,7 @@ public:
 	void DrawBitmap(ID2D1Bitmap* pBitmap, D2D1_MATRIX_3X2_F transform);
 
 	void DrawStringText(const WCHAR* _text);
+	void DrawStringTextw(const WCHAR* _text, D2D1_MATRIX_3X2_F transform);
 
 	size_t GetUsedVRAM();
 

@@ -254,6 +254,22 @@ void D2DRenderer::DrawStringText(const WCHAR* _text)
     );
 }
 
+void D2DRenderer::DrawStringTextw(const WCHAR* _text, D2D1_MATRIX_3X2_F transform)
+{
+    _RenderTarget->SetTransform(transform);
+    D2D1_SIZE_F size = _RenderTarget->GetSize();
+
+    std::wstring text = _text;
+    //WCHAR sc_helloWorld[] = L"안녕!, 세계! Abg\n 어암ㅈ암장\n ㅇhagth";
+    _RenderTarget->DrawText(
+        text.c_str(),
+        text.size(), //ARRAYSIZE(sc_helloWorld) - 1,
+        g_pDWriteTextFormat,
+        D2D1::RectF(60, 0, size.width, size.height),
+        g_brush
+    );
+}
+
 size_t D2DRenderer::GetUsedVRAM()
 {
     DXGI_QUERY_VIDEO_MEMORY_INFO videoMemoryInfo;

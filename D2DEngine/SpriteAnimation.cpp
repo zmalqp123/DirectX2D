@@ -87,6 +87,25 @@ void SpriteAnimation::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3
 	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
 }
 
+void SpriteAnimation::Render(D2D1_MATRIX_3X2_F cameraMat)
+{
+	if (m_pAnimationInfo == nullptr)
+		return;
+	auto pRenderTarget = &D2DRenderer::getRenderTarget();
+
+	D2D1_MATRIX_3X2_F m_ScreenTransform =
+		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
+		D2D1::Matrix3x2F::Translation(640.f, 360.f);
+	D2D1_MATRIX_3X2_F Transform =
+		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * m_ImageTransform
+		* m_pTransform->m_WorldTransform
+		* cameraMat
+		* m_ScreenTransform;
+	;// * D2DRenderer::m_CameraTransform;
+	pRenderTarget->SetTransform(Transform);
+	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+}
+
 void SpriteAnimation::SetAnimation(int index, bool mirror)
 {
 	assert(m_pAnimationAsset != nullptr);
