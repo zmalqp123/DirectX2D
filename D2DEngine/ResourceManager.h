@@ -7,9 +7,10 @@ class Sprite;
 
 class ResourceManager : public Object
 {
-public:
+private:
 	ResourceManager();
 	~ResourceManager();
+public:
 
 	std::map<std::wstring, ID2D1Bitmap*> m_BitmapMap;
 	std::map<std::wstring, Texture*> m_TextureMap;

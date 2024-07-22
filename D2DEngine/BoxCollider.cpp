@@ -54,11 +54,12 @@ void BoxCollider::Render(D2D1_MATRIX_3X2_F cameraMat)
 		* m_ScreenTransform;
 	pRenderTarget->SetTransform(Transform);
 	//pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
-	D2DRenderer::getIncetance().DrawHollowRectangle(m_Collider.GetMinX(),
+	D2DRenderer::getIncetance().DrawHollowRectangle(
+		m_Collider.GetMinX(),
 		m_Collider.GetMinY(),
 		m_Collider.GetMaxX(),
 		m_Collider.GetMaxY(),
 		2.f,
 		D2D1::ColorF::LimeGreen		
-		);
+	);
 }

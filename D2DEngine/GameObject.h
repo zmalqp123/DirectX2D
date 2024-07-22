@@ -45,10 +45,11 @@ public:
 		bool bIsBase = std::is_base_of<Component, T>::value;
 		assert(bIsBase == true);
 
-		T* pComponent = new T();
-		AddComponent(pComponent);
-
-		return pComponent;
+		for (auto c : components) {
+			if (typeid(*c) == typeid(T))
+				return dynamic_cast<T*>(c);
+		}
+		return nullptr;
 	}
 
 	void RemoveComponent(Component* Component);

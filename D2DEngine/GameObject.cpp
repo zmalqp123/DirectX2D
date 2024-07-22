@@ -6,7 +6,7 @@
 #include "D2DRenderer.h"
 GameObject::GameObject()
 {
-	transform = new Transform();
+	transform = CreateComponent<Transform>();
 }
 GameObject::~GameObject()
 {
