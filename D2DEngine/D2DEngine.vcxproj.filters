@@ -94,6 +94,9 @@
     <Filter Include="소스 파일\Component\Collider\CircleCollider">
       <UniqueIdentifier>{040aede8-3106-4252-b88d-32ef3c06023c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Component\Collider\Rigidbody">
+      <UniqueIdentifier>{d3609380-2d61-4fc2-a2ab-aa406bd5a4bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -180,6 +183,9 @@
     <ClInclude Include="CircleCollider.h">
       <Filter>소스 파일\Component\Collider\CircleCollider</Filter>
     </ClInclude>
+    <ClInclude Include="Rigidbody2D.h">
+      <Filter>소스 파일\Component\Collider\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -256,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>소스 파일\Component\Collider\CircleCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody2D.cpp">
+      <Filter>소스 파일\Component\Collider\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

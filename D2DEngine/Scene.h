@@ -12,10 +12,13 @@ public:
 	virtual ~Scene();
 
 	std::vector<GameObject*> m_GameObjects;
+
 	AABB* m_pCullingBound = nullptr;
 	AABB m_CullingBoundDefault;
+
 	GameObject* cam = nullptr;
 	D2D1_MATRIX_3X2_F cameraMat;
+
 	void Start();
 	void Update(float deltaTime);
 	void Render(D2DRenderer* _render);

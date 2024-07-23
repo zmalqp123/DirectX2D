@@ -90,6 +90,18 @@ void WinGameApp::Run()
                 static_cast<int>(ceil(1080.f * dpi / 96.f)),
                 SWP_NOMOVE);
         }*/
+
+        static ULONGLONG elapsedTime;
+
+        elapsedTime += deltaTime.GetDeltaTime();
+
+        while (elapsedTime >= 20) //0.02√ 
+        {
+            //++m_FixedUpdateCount;
+
+            elapsedTime -= 20;
+        }
+
         Update(deltaTime.GetDeltaTime());
         D2DRenderer::getIncetance().BeginDraw();
         D2DRenderer::getIncetance().Clear(D2D1::ColorF(D2D1::ColorF::Coral));
@@ -97,8 +109,15 @@ void WinGameApp::Run()
         D2DRenderer::getIncetance().EndDraw();
     }
 }
+void WinGameApp::FixedUpdate()
+{
+}
 void WinGameApp::Update(float delatTime) {
     //temp += deltaTime.GetDeltaTime() + 2.f;
+}
+
+void WinGameApp::LateUpdate()
+{
 }
 
 void WinGameApp::Render(D2DRenderer* _render)

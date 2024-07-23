@@ -23,7 +23,9 @@ public:
 	// 자식 클래스가 재정의 가능하도록 virtual keyword 를 붙인다.
 	virtual void Initialize(HINSTANCE hInstance, int nCmdShow);
 	virtual void Run();
+	virtual void FixedUpdate();
 	virtual void Update(float deltaTime);
+	virtual void LateUpdate();
 	virtual void Render(D2DRenderer* _render);
 	virtual void Uninitialize();
 };

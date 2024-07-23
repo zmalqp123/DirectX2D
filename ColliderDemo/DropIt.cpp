@@ -43,7 +43,7 @@ void DropIt::OnBlock(Collider* pOwnedComponent, Collider* pOtherComponent)
 
 void DropIt::OnBeginOverlap(Collider* pOwnedComponent, Collider* pOtherComponent)
 {
-	auto c = pOtherComponent->gameObject->GetComponent<Transform>();
+	Collider* c = pOtherComponent->gameObject->GetComponent<Collider>();
 }
 
 void DropIt::OnEndOverlap(Collider* pOwnedComponent, Collider* pOtherComponent)

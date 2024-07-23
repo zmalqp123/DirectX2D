@@ -45,11 +45,24 @@ public:
 		bool bIsBase = std::is_base_of<Component, T>::value;
 		assert(bIsBase == true);
 
-		for (auto c : components) {
-			if (typeid(*c) == typeid(T))
-				return dynamic_cast<T*>(c);
+		for (auto iter = components.begin(); iter != components.end(); iter++)
+		{
+			T* result= dynamic_cast<T*>(*iter);
+			if (result) return result;
 		}
-		return nullptr;
+
+		//// 상속관계인 컴포넌트를 찾을 수 없음.
+		//for (auto c : components) {
+		//	auto cP = dynamic_cast<T*>(c);
+		//	if (cP != nullptr) {
+		//		if (typeid(cP) == typeid(T*)) {
+		//			return dynamic_cast<T*>(c);
+		//		}
+		//	}
+		//	if (typeid(*c) == typeid(T))
+		//		return dynamic_cast<T*>(c);
+		//}
+		//return nullptr;
 	}
 
 	void RemoveComponent(Component* Component);
