@@ -9,6 +9,6 @@ public:
 	}
 
 	// Collider을(를) 통해 상속됨
-	bool isCollide(Collider* collider) override;
+	bool isCollide(Collider* collider, Vector2& resolution) override;
 };
 

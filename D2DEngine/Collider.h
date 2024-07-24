@@ -2,6 +2,7 @@
 
 #include "Component.h"
 #include <set>
+#include "Vector.h"
 enum class ColliderType {
 	None,
 	Circle,
@@ -9,14 +10,15 @@ enum class ColliderType {
 };
 enum class CollisionType {
 	None,
-	Block,
-	Overlap
+	Block, // Collision
+	Overlap // Trigger
 };
 #define BLOCK CollisionType::Block
 #define OVERLAP CollisionType::Overlap
 class Collider;
 class IColliderNotify {
 public:
+	Vector2 resoultion;
 	virtual void OnBlock(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 	virtual void OnBeginOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 	virtual void OnEndOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
@@ -31,6 +33,9 @@ protected:
 	std::set<Collider*> m_ColliderStateCurr;
 	std::set<Collider*> m_ColliderStatePrev;
 public:
+	bool isKinemetic = false;
+	Vector2 prevPosition;
+
 	Collider() = default;
 	virtual ~Collider() = default;
 
@@ -46,8 +51,12 @@ public:
 	void ProcessOverlap();
 	void ProcessBlock(Collider* pOtherComponent);
 
-	virtual bool isCollide(Collider* collider) = 0;
+	virtual bool isCollide(Collider* collider, Vector2& resolution) = 0;
 
 	virtual void Update(float deltaTime);
+
+	void SetPosition(Vector2 position);
+	void AddPosition(Vector2 position);
+	bool isBlock();
 };
 

@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "Camera.h"
 #include "SpriteAnimation.h"
+#include "Rigidbody2D.h"
 
 Scene::Scene()
 {
@@ -19,12 +20,28 @@ void Scene::Start()
 }
 void Scene::Update(float deltaTime)
 {
+	/*std::vector<Collider*> collider;
+	for (auto& g : m_GameObjects) {
+		for (auto& coll : g->components) {
+			if (Collider* c = dynamic_cast<Collider*>(coll)) {
+				collider.push_back(c);
+			}
+			else {
+				continue;
+			}
+		}
+	}
+	for (int i = 0; i < collider.size(); i++) {
+		collider[i]->prevPosition = collider[i]->gameObject->transform->m_RelativeLocation;
+	}*/
+
 	for (auto gameObject : m_GameObjects) {
 		gameObject->Update(deltaTime);
 	}
 	cameraMat = cam->transform->m_WorldTransform;
 	D2D1InvertMatrix(&cameraMat);
 
+	// collider
 	std::vector<Collider*> colliders;
 	for (auto& g : m_GameObjects) {
 		for (auto& coll : g->components) {
@@ -41,11 +58,49 @@ void Scene::Update(float deltaTime)
 	for (int i = 0; i < colliders.size(); i++) {
 
 		for (int target = i + 1; target < colliders.size(); target++) {
+			Vector2 resolution;
 			if (colliders[i]->gameObject == colliders[target]->gameObject) continue;
-			if (!colliders[i]->isCollide(colliders[target])) continue;
+			if (!colliders[i]->isCollide(colliders[target], resolution)) continue;
+
 			if (colliders[i]->GetCollisionType() == CollisionType::Block &&
 				colliders[target]->GetCollisionType() == CollisionType::Block)
 			{
+				Vector2 aVelocity, bVelocity; // 이동량 구하기
+				aVelocity = colliders[i]->gameObject->transform->m_RelativeLocation - colliders[i]->prevPosition;
+				bVelocity = colliders[target]->gameObject->transform->m_RelativeLocation - colliders[target]->prevPosition;
+
+				if (!colliders[i]->isKinemetic && !colliders[target]->isKinemetic) {
+					colliders[i]->AddPosition({ resolution.x / 2 , resolution.y / 2 });
+					colliders[target]->AddPosition({ -resolution.x / 2 , -resolution.y / 2 });
+				}
+				else if (!colliders[i]->isKinemetic) {
+					colliders[i]->AddPosition({ resolution.x , resolution.y });
+				}
+				else if (!colliders[target]->isKinemetic) {
+					colliders[target]->AddPosition({ -resolution.x , -resolution.y });
+				}
+
+				Vector2 collisionNormal = { resolution.x != 0 ? resolution.x : 0, resolution.y != 0 ? resolution.y : 0 };
+				float length = std::sqrt(collisionNormal.x * collisionNormal.x + collisionNormal.y * collisionNormal.y);
+				if (length != 0) {
+					collisionNormal.x /= length;
+					collisionNormal.y /= length;
+				}
+
+				float dotProduct1 = aVelocity.x * collisionNormal.x + aVelocity.y * collisionNormal.y;
+				float dotProduct2 = bVelocity.x * collisionNormal.x + bVelocity.y * collisionNormal.y;
+
+				Vector2 projection1 = { dotProduct1 * collisionNormal.x, dotProduct1 * collisionNormal.y };
+				Vector2 projection2 = { dotProduct2 * collisionNormal.x, dotProduct2 * collisionNormal.y };
+
+				if (!colliders[i]->isKinemetic) {
+					colliders[i]->AddPosition(projection1 * -1.f);
+				}
+
+				if (!colliders[target]->isKinemetic) {
+					colliders[target]->AddPosition(projection2 * -1.f);
+				}
+
 				colliders[i]->ProcessBlock(colliders[target]);
 				colliders[target]->ProcessBlock(colliders[i]);
 			}

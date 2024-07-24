@@ -53,6 +53,9 @@ void Player::Render(D2D1_MATRIX_3X2_F cameraMat)
 
 void Player::OnBlock(Collider* pOwnedComponent, Collider* pOtherComponent)
 {
+	if (pOtherComponent->gameObject->isActive == true)
+		colls.push_back(pOtherComponent->gameObject);
+	count++;
 }
 
 void Player::OnBeginOverlap(Collider* pOwnedComponent, Collider* pOtherComponent)

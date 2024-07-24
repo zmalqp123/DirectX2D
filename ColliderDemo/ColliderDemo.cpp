@@ -26,11 +26,11 @@ void ColliderDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 
 	GameObject* gameObject = scene->CreateGameObject<GameObject>();
 	BoxCollider* coll = gameObject->CreateComponent<BoxCollider>();
-	coll->SetCollisionType(CollisionType::Overlap);
+	coll->SetCollisionType(CollisionType::Block);
+	coll->isKinemetic = false;
 	gameObject->CreateComponent<Player>();
 
-
-	GameObject* gen = scene->CreateGameObject<GameObject>();
+	/*GameObject* gen = scene->CreateGameObject<GameObject>();
 	auto cGen = gen->CreateComponent<Generator>();
 	cGen->target = gameObject->transform;
 	for (int i = 0; i < 20; i++) {
@@ -38,7 +38,8 @@ void ColliderDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 		it->transform->m_RelativeLocation = { 0.f, 0.f };
 
 		BoxCollider* c = it->CreateComponent<BoxCollider>();
-		c->SetCollisionType(CollisionType::Overlap);
+		c->SetCollisionType(CollisionType::Block);
+		c->isKinemetic = true;
 
 		auto drop = it->CreateComponent<DropIt>();
 		drop->SetTarget(gameObject->transform);
@@ -46,7 +47,31 @@ void ColliderDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 
 		it->isActive = false;
 		cGen->pools.push(drop);
-	}
+	}*/
+
+
+
+
+	gameObject = scene->CreateGameObject<GameObject>();
+	coll = gameObject->CreateComponent<BoxCollider>();
+	gameObject->transform->m_RelativeLocation = { 300.f, 0.f };
+	coll->SetCollisionType(CollisionType::Block);
+	coll->SetExtent({ 0.f, 300.f });
+	coll->isKinemetic = true;
+	
+	gameObject = scene->CreateGameObject<GameObject>();
+	coll = gameObject->CreateComponent<BoxCollider>();
+	gameObject->transform->m_RelativeLocation = { -300.f, 0.f };
+	coll->SetCollisionType(CollisionType::Block);
+	coll->SetExtent({ 0.f, 300.f });
+	coll->isKinemetic = true;
+	
+	gameObject = scene->CreateGameObject<GameObject>();
+	coll = gameObject->CreateComponent<BoxCollider>();
+	gameObject->transform->m_RelativeLocation = { 0.f, -300.f };
+	coll->SetCollisionType(CollisionType::Block);
+	coll->SetExtent({ 300.f, 0.f });
+	coll->isKinemetic = true;
 }
 
 void ColliderDemo::Run()
