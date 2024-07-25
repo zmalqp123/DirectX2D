@@ -15,7 +15,7 @@ public:
 	D2D1_MATRIX_3X2_F	m_RelativeTransform;		// 상대 복합 변환
 	D2D1_MATRIX_3X2_F	m_WorldTransform;			// 부모까지 반영된 최종 변환
 
-	Vector2		m_CenterTransform;
+	//Vector2		m_CenterTransform;
 
 	// RelativeTransform과 m_WorldTransform을 계산한다.
 	void UpdateTrasnform();

@@ -79,12 +79,12 @@ void SpriteAnimation::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3
 		D2D1::Matrix3x2F::Translation(640.f, 360.f);
 	D2D1_MATRIX_3X2_F Transform =
 		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * m_ImageTransform
-		* m_pTransform->m_WorldTransform 
+		* gameObject->transform->m_WorldTransform
 		* cameraMat 
 		* m_ScreenTransform;
 	;// * D2DRenderer::m_CameraTransform;
 	pRenderTarget->SetTransform(Transform);
-	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, m_SrcRect);
 }
 
 void SpriteAnimation::Render(D2D1_MATRIX_3X2_F cameraMat)
@@ -98,15 +98,15 @@ void SpriteAnimation::Render(D2D1_MATRIX_3X2_F cameraMat)
 		D2D1::Matrix3x2F::Translation(640.f, 360.f);
 	D2D1_MATRIX_3X2_F Transform =
 		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) * m_ImageTransform
-		* m_pTransform->m_WorldTransform
+		* gameObject->transform->m_WorldTransform
 		* cameraMat
 		* m_ScreenTransform;
-	;// * D2DRenderer::m_CameraTransform;
+	//  * D2DRenderer::m_CameraTransform;
 	pRenderTarget->SetTransform(Transform);
-	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+	pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, m_SrcRect);
 }
 
-void SpriteAnimation::SetAnimation(int index, bool mirror)
+void SpriteAnimation::SetAnimation(int index, bool mirror, bool continueCurrentFrame)
 {
 	assert(m_pAnimationAsset != nullptr);
 
@@ -116,16 +116,22 @@ void SpriteAnimation::SetAnimation(int index, bool mirror)
 
 	m_pAnimationInfo = pFound;
 	m_bMirror = mirror;
-	m_FrameIndexCurr = 0;
-	m_FrameIndexPrev = 0;
-	m_FrameTime = 0.0f;
+	if (!continueCurrentFrame) {
+		m_FrameIndexCurr = 0;
+		m_FrameIndexPrev = 0;
+		m_FrameTime = 0.0f;
+	}
+	else {
+		m_FrameIndexCurr = m_FrameIndexCurr % m_pAnimationInfo->Frames.size();
+		m_FrameIndexPrev = 0;
+	}
 }
 
 AABB SpriteAnimation::GetBound()
 {
 	AABB ab;
-	ab.SetCenter(gameObject->transform->m_RelativeLocation.x , gameObject->transform->m_RelativeLocation.y);
-	ab.SetExtent(float(m_DstRect.right / 2), float(m_DstRect.bottom / 2));
+	ab.SetCenter(gameObject->transform->m_WorldTransform.dx , gameObject->transform->m_WorldTransform.dy);
+	ab.SetExtent(float((m_DstRect.right - m_DstRect.left) / 2), float((m_DstRect.bottom - m_DstRect.top) / 2));
 	return ab;
 }
 

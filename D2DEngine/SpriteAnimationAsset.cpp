@@ -19,6 +19,20 @@ bool SpriteAnimationAsset::LoadAnimation(std::wstring FilePath)
 		LoadAnimationFromCSV(1, L"../Resource/KenMove.csv");
 		LoadAnimationFromCSV(2, L"../Resource/KenAttack.csv");
 	}
+	if (FilePath == std::wstring(L"TheBullet")) {
+		LoadAnimationFromCSV(0, L"../Resource/Animations/IdleDown.txt");
+		LoadAnimationFromCSV(1, L"../Resource/Animations/IdleRight.txt");
+		LoadAnimationFromCSV(2, L"../Resource/Animations/IdleRightUp.txt");
+		LoadAnimationFromCSV(3, L"../Resource/Animations/IdleUp.txt");
+		LoadAnimationFromCSV(4, L"../Resource/Animations/WalkDown.txt");
+		LoadAnimationFromCSV(5, L"../Resource/Animations/WalkRight.txt");
+		LoadAnimationFromCSV(6, L"../Resource/Animations/WalkRightUp.txt");
+		LoadAnimationFromCSV(7, L"../Resource/Animations/WalkUp.txt");
+		LoadAnimationFromCSV(8, L"../Resource/Animations/DodgeRollDown.txt");
+		LoadAnimationFromCSV(9, L"../Resource/Animations/DodgeRollRight.txt");
+		LoadAnimationFromCSV(10, L"../Resource/Animations/DodgeRollRightUp.txt");
+		LoadAnimationFromCSV(11, L"../Resource/Animations/DodgeRollUp.txt");
+	}
 	return true;
 }
 

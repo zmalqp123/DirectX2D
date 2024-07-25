@@ -7,6 +7,8 @@
 #include "SpriteAnimation.h"
 #include "Rigidbody2D.h"
 
+#include <algorithm>
+
 Scene::Scene()
 {
 }
@@ -115,7 +117,7 @@ void Scene::Update(float deltaTime)
 		pColl->ProcessOverlap();
 	}
 }
-
+int count = 0;
 void Scene::Render(D2DRenderer* _render)
 {
 	D2D1_MATRIX_3X2_F c = cam->transform->m_WorldTransform;
@@ -136,20 +138,45 @@ void Scene::Render(D2DRenderer* _render)
 
 	//auto temp = D2D1::Matrix3x2F::Translation(gq->transform->m_RelativeLocation.x, gq->transform->m_RelativeLocation.y) * gq->transform->m_WorldTransform;
 	// 카메라 센터 * 카메라 월드매트릭스 = 카메라 센터인 벡터? 뭐라하지 테스트해봐야함
-
-
-	for (auto g : m_GameObjects) {
-		/*if (!g->spriteAnim) continue;
-		AABB lab = g->spriteAnim->GetBound();
-		bool check = camAABB.CheckIntersect(lab);
-		if (check) {
-			g->Render(cameraMat);
-		}*/
-
-		for (auto cRender : g->components) {
-			cRender->Render(cameraMat);
+	std::vector<Renderer*> renderer;
+	for (auto& g : m_GameObjects) {
+		if (g->isActive == false) continue;
+		for (auto& render : g->components) {
+			if (Renderer* c = dynamic_cast<Renderer*>(render)) {
+				renderer.push_back(c);
+			}
 		}
 	}
+	std::sort(renderer.begin(), renderer.end(), [](Renderer* first, Renderer* second) {
+		return first->GetSortingLayer() < second->GetSortingLayer();
+		});
+
+	//for (auto g : m_GameObjects) {
+	//	/*if (!g->spriteAnim) continue;
+	//	AABB lab = g->spriteAnim->GetBound();
+	//	bool check = camAABB.CheckIntersect(lab);
+	//	if (check) {
+	//		g->Render(cameraMat);
+	//	}*/
+
+	//	for (auto cRender : g->components) {
+	//		cRender->Render(cameraMat);
+	//	}
+	//}
+	count = 0;
+	for (auto r : renderer) {
+		AABB lab = r->GetBound();
+		bool check = camAABB.CheckIntersect(lab);
+		if (check) {
+			r->Render(cameraMat);
+			count++;
+		}
+	}
+
+	D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
+	std::wstring tempS = std::to_wstring(count);
+
+	_render->DrawStringText(tempS.c_str());
 }
 
 void Scene::Clear()

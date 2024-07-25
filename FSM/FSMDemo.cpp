@@ -33,7 +33,7 @@ void FSMDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 	//GameObject* gq = new GameObject();
 	SpriteAnimation* spranim = gq->CreateComponent<SpriteAnimation>();
 	//spranim->SetOwner(gq);
-	spranim->m_pTransform = gq->transform;
+	//spranim->m_pTransform = gq->transform;
 	spranim->m_pTexture = t;
 	spranim->LoadAnimationAsset(L"../Resource/midnight.txt");
 	spranim->SetAnimation(1, rand() % 2 == 0 ? true : false);
@@ -48,7 +48,7 @@ void FSMDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 	enemy = scene->CreateGameObject<GameObject>();
 	SpriteAnimation* spr = enemy->CreateComponent<SpriteAnimation>();
 	//spr->SetOwner(enemy);
-	spr->m_pTransform = enemy->transform;
+	//spr->m_pTransform = enemy->transform;
 	spr->m_pTexture = t;
 	spr->LoadAnimationAsset(L"Ken");
 	spr->SetAnimation(0, false);
@@ -70,7 +70,7 @@ void FSMDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 	player = scene->CreateGameObject<GameObject>();
 	spr = player->CreateComponent<SpriteAnimation>();
 	//spr->SetOwner(player);
-	spr->m_pTransform = player->transform;
+	//spr->m_pTransform = player->transform;
 	spr->m_pTexture = t;
 	spr->LoadAnimationAsset(L"Ken");
 	spr->SetAnimation(0, false);

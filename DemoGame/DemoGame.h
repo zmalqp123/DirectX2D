@@ -3,11 +3,11 @@
 //#include "Windows.h"
 
 class TestObject;
-
+class Scene;
 class DemoGame : public WinGameApp
 {
 public:
-
+	Scene* scene;
 	TestObject* testObj[3];
 	//  virtual 만 사용해도 되지만
 	// override를 keyword를 사용하므로써 가상함수 "재정의" 라는것을 확실히한다.

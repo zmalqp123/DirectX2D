@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "WinGameApp.h"
 #include <cmath>
+#include "InputManager.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -55,6 +56,7 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
         UpdateWindow(hwnd);
     }
 
+    InputManager::GetInstance().InitInput(hwnd);
     deltaTime.InitTime();
 }
 
@@ -71,11 +73,20 @@ void WinGameApp::Run()
             if (msg.message == WM_QUIT) {
                 bQuit = true;
             }
+            else if (msg.message == WM_KEYDOWN || msg.message == WM_LBUTTONDOWN || msg.message == WM_RBUTTONDOWN)
+            {
+                InputManager::GetInstance().KeyDown(msg.wParam);
+            }
+            else if (msg.message == WM_KEYUP || msg.message == WM_LBUTTONUP || msg.message == WM_RBUTTONUP)
+            {
+                InputManager::GetInstance().KeyUp(msg.wParam);
+            }
             else {
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
             }
         }
+        InputManager::GetInstance().UpdateMouse();
         deltaTime.UpdateTime();
         
         // 이걸 사용하면 화면 크기를 마음대로 변경 가능.
@@ -107,6 +118,8 @@ void WinGameApp::Run()
         D2DRenderer::getIncetance().Clear(D2D1::ColorF(D2D1::ColorF::Coral));
         Render(&D2DRenderer::getIncetance());
         D2DRenderer::getIncetance().EndDraw();
+
+        InputManager::GetInstance().ResetInput();
     }
 }
 void WinGameApp::FixedUpdate()

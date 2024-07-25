@@ -16,9 +16,6 @@
     <Filter Include="소스 파일\Engine">
       <UniqueIdentifier>{7bbfa65a-53ac-4ced-94c2-34f189927bfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Time">
-      <UniqueIdentifier>{510d3f05-0f64-4bee-a492-7de8a7455d93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Render">
       <UniqueIdentifier>{01c34322-8bf2-4526-8ec7-e4b9a414525c}</UniqueIdentifier>
     </Filter>
@@ -39,9 +36,6 @@
     </Filter>
     <Filter Include="소스 파일\Texture\Sprite">
       <UniqueIdentifier>{2a7269a9-fda9-4b95-8711-636e42fafd31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\ResourceManager">
-      <UniqueIdentifier>{0185a0dc-30fb-4ae0-a6d5-d3f45693cc10}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Object\ReferenceCounter">
       <UniqueIdentifier>{d0034110-e86e-4277-844c-aaeda21ca6fc}</UniqueIdentifier>
@@ -97,6 +91,21 @@
     <Filter Include="소스 파일\Component\Collider\Rigidbody">
       <UniqueIdentifier>{d3609380-2d61-4fc2-a2ab-aa406bd5a4bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{721cf80d-4e31-4fe3-ac1f-cc5cd9af3065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\ResourceManager">
+      <UniqueIdentifier>{0185a0dc-30fb-4ae0-a6d5-d3f45693cc10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\InputManager">
+      <UniqueIdentifier>{957dcaaf-7fed-4851-b36f-4ae539ce8bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\Time">
+      <UniqueIdentifier>{510d3f05-0f64-4bee-a492-7de8a7455d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Component\Renderer\SpriteRenderer">
+      <UniqueIdentifier>{5a13888c-cddf-4ee2-8432-0e15cd351d64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -112,7 +121,7 @@
       <Filter>소스 파일\Render</Filter>
     </ClInclude>
     <ClInclude Include="DeltaTime.h">
-      <Filter>소스 파일\Time</Filter>
+      <Filter>소스 파일\Manager\Time</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>소스 파일\Component\Transform</Filter>
@@ -133,7 +142,7 @@
       <Filter>소스 파일\Texture</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>소스 파일\ResourceManager</Filter>
+      <Filter>소스 파일\Manager\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="ReferenceCounter.h">
       <Filter>소스 파일\Object\ReferenceCounter</Filter>
@@ -186,6 +195,12 @@
     <ClInclude Include="Rigidbody2D.h">
       <Filter>소스 파일\Component\Collider\Rigidbody</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>소스 파일\Component\Renderer\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>소스 파일\Manager\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -201,7 +216,7 @@
       <Filter>소스 파일\Render</Filter>
     </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
-      <Filter>소스 파일\Time</Filter>
+      <Filter>소스 파일\Manager\Time</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>소스 파일\Component\Transform</Filter>
@@ -219,7 +234,7 @@
       <Filter>소스 파일\Texture</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>소스 파일\ResourceManager</Filter>
+      <Filter>소스 파일\Manager\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="ReferenceCounter.cpp">
       <Filter>소스 파일\Object\ReferenceCounter</Filter>
@@ -265,6 +280,12 @@
     </ClCompile>
     <ClCompile Include="Rigidbody2D.cpp">
       <Filter>소스 파일\Component\Collider\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\Manager\InputManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

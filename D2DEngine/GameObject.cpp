@@ -32,7 +32,7 @@ void GameObject::Update(float delta)
 
 void GameObject::Render(D2D1_MATRIX_3X2_F cameraMat)
 {
-	if (spriteAnim) spriteAnim->Render(&D2DRenderer::getRenderTarget(), cameraMat);
+	//if (spriteAnim) spriteAnim->Render(&D2DRenderer::getRenderTarget(), cameraMat);
 	for (auto c : components) {
 		c->Render(cameraMat);
 	}

@@ -28,14 +28,13 @@ public:
 
 	bool m_bMirror;				// 좌우 반전 여부
 	D2D1_MATRIX_3X2_F	m_ImageTransform;	// 반대 방향으로 뒤집기 위한 행렬 Scale.x = -1.0f 
-	Transform* m_pTransform;
 	Texture* m_pTexture;
 
 	void LoadAnimationAsset(const std::wstring strFilePath);
 	void Update(float fTimeElapsed);
 	void Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat);
 	void Render(D2D1_MATRIX_3X2_F cameraMat);
-	void SetAnimation(int index, bool mirror);
+	void SetAnimation(int index, bool mirror, bool continueCurrentFrame = false);
 
 	AABB GetBound();
 

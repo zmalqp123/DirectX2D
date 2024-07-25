@@ -26,8 +26,8 @@ void TestObject::Render()
 	//D2DRenderer& render = D2DRenderer::getIncetance();
 	//D2DRenderer::getIncetance().DrawBitmap(m_pBitmap, transform->m_WorldTransform);
 	D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
-	D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Translation(transform->m_CenterTransform.x, transform->m_CenterTransform.y) * transform->m_WorldTransform);
-	D2DRenderer::getRenderTarget().DrawBitmap(m_pBitmap, DestRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &SrcRect);
+	//D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Translation(transform->m_CenterTransform.x, transform->m_CenterTransform.y) * transform->m_WorldTransform);
+	//D2DRenderer::getRenderTarget().DrawBitmap(m_pBitmap, DestRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &SrcRect);
 
 }
 
