@@ -30,6 +30,15 @@
     <ClCompile Include="CameraMoving.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerIdle.cpp">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerWalk.cpp">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDodgeRoll.cpp">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -40,6 +49,15 @@
     </ClInclude>
     <ClInclude Include="CameraMoving.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdle.h">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDodgeRoll.h">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerWalk.h">
+      <Filter>소스 파일\Components\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

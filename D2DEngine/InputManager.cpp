@@ -20,7 +20,6 @@ void InputManager::InitInput(HWND _hWnd)
 		isKeyUp[i] = false;
 		isKey[i] = false;
 	}
-	memset(buffer, '\0', 255);
 	InitMouse();
 }
 
@@ -82,10 +81,25 @@ void InputManager::UpdateMouse()
 	curMouse.x = pt.x;
 	curMouse.y = pt.y;
 	curMouse.wheel = 0;
-
+	
 	curMouse.left = (GetKeyState(VK_LBUTTON) & 0x8000) != 0;
 	curMouse.right = (GetKeyState(VK_RBUTTON) & 0x8000) != 0;
 	curMouse.middle = (GetKeyState(VK_MBUTTON) & 0x8000) != 0;
+
+	//std::cout << pt.x << ", " << pt.y << std::endl;
+	RECT clientRect;
+	GetClientRect(hWnd, &clientRect);
+
+	D2D1_MATRIX_3X2_F clientToScreenMatrix =
+		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
+		D2D1::Matrix3x2F::Translation(
+			0,
+			(clientRect.bottom - clientRect.top));
+
+	mousePosition = {
+		curMouse.x * clientToScreenMatrix._11 + curMouse.y * clientToScreenMatrix._21 + clientToScreenMatrix._31,
+		curMouse.x * clientToScreenMatrix._12 + curMouse.y * clientToScreenMatrix._22 + clientToScreenMatrix._32
+	};
 }
 
 bool InputManager::IsSame(const MouseState& a, const MouseState& b)
@@ -101,4 +115,9 @@ const InputManager::MouseState& InputManager::GetMouseState()
 const InputManager::MouseState& InputManager::GetPrevMouseState()
 {
 	return prevMouse;
+}
+
+const Vector2& InputManager::GetMousePosition()
+{
+	return mousePosition;
 }

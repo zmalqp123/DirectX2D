@@ -80,3 +80,36 @@ void BoxCollider::SetExtent(const Vector2& _extent)
 {
 	m_Collider.m_Extent = _extent;
 }
+
+
+//collider에 render붙이는거 테스트 중.
+AABB BoxCollider::GetBound()
+{
+	AABB ab;
+	ab.SetCenter(gameObject->transform->m_WorldTransform.dx, gameObject->transform->m_WorldTransform.dy);
+	ab.SetExtent(m_Collider.m_Extent.x, m_Collider.m_Extent.y);
+	return ab;
+}
+
+void BoxCollider::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat)
+{
+	if (gameObject->isActive == false) return;
+
+	D2D1_MATRIX_3X2_F m_ScreenTransform =
+		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
+		D2D1::Matrix3x2F::Translation(640.f, 360.f);
+	D2D1_MATRIX_3X2_F Transform =
+		gameObject->transform->m_WorldTransform
+		* cameraMat
+		* m_ScreenTransform;
+	pRenderTarget->SetTransform(Transform);
+	//pRenderTarget->DrawBitmap(m_pTexture->m_pD2DBitmap, m_DstRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+	D2DRenderer::getIncetance().DrawHollowRectangle(
+		m_Collider.GetMinX(),
+		m_Collider.GetMinY(),
+		m_Collider.GetMaxX(),
+		m_Collider.GetMaxY(),
+		2.f,
+		D2D1::ColorF::LimeGreen
+	);
+}

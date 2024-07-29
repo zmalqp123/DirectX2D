@@ -11,7 +11,7 @@ public:
 	// 부모 클래스의 함수가 virtual 이 아니면 컴파일 에러.
 	virtual void Initialize(HINSTANCE hInstance, int nCmdShow);
 
-	virtual void Run();
+	//virtual void Run();
 
 	virtual void Update(float deltaTime);
 

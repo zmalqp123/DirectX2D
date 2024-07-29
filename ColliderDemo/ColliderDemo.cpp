@@ -52,32 +52,32 @@ void ColliderDemo::Initialize(HINSTANCE hInstance, int nCmdShow)
 
 
 
-	gameObject = scene->CreateGameObject<GameObject>();
+	/*gameObject = scene->CreateGameObject<GameObject>();
 	coll = gameObject->CreateComponent<BoxCollider>();
 	gameObject->transform->m_RelativeLocation = { 300.f, 0.f };
 	coll->SetCollisionType(CollisionType::Block);
 	coll->SetExtent({ 0.f, 300.f });
 	coll->isKinemetic = true;
-	
+	*/
 	gameObject = scene->CreateGameObject<GameObject>();
 	coll = gameObject->CreateComponent<BoxCollider>();
-	gameObject->transform->m_RelativeLocation = { -300.f, 0.f };
+	gameObject->transform->m_RelativeLocation = { 0.f, 360.f };
 	coll->SetCollisionType(CollisionType::Block);
-	coll->SetExtent({ 0.f, 300.f });
+	coll->SetExtent({ 30.f, 0.f });
 	coll->isKinemetic = true;
 	
 	gameObject = scene->CreateGameObject<GameObject>();
 	coll = gameObject->CreateComponent<BoxCollider>();
-	gameObject->transform->m_RelativeLocation = { 0.f, -300.f };
+	gameObject->transform->m_RelativeLocation = { 0.f, -360.f };
 	coll->SetCollisionType(CollisionType::Block);
 	coll->SetExtent({ 300.f, 0.f });
 	coll->isKinemetic = true;
 }
 
-void ColliderDemo::Run()
-{
-	__super::Run();
-}
+//void ColliderDemo::Run()
+//{
+//	__super::Run();
+//}
 
 void ColliderDemo::Update(float deltaTime)
 {

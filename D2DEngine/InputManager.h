@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector.h"
 class InputManager
 {
 private:
@@ -42,6 +43,7 @@ public:
 
 	const MouseState& GetMouseState();
 	const MouseState& GetPrevMouseState();
+	const Vector2& GetMousePosition(); // 스크린 좌표를 리턴 Left - Bottom = (0,0)
 private:
 	HWND hWnd;
 
@@ -52,7 +54,8 @@ private:
 	MouseState curMouse;
 	MouseState prevMouse;
 
-	TCHAR buffer[255] = { 0 };
+	Vector2 mousePosition;
+
 	int length = 0;
 	bool isInputKey = false;
 };

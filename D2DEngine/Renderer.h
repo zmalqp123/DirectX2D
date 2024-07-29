@@ -2,7 +2,7 @@
 #include "Component.h"
 
 class AABB;
-class Renderer : public Component
+class Renderer : virtual public Component
 {
 private:
 	int sortingLayer = 0;

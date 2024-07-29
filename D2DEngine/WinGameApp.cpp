@@ -42,13 +42,16 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
     {
         float dpi = GetDpiForWindow(hwnd);
 
+        RECT rect = { 0,0, static_cast<int>(ceil(1280.f * dpi / 96.f)),
+            static_cast<int>(ceil(720.f * dpi / 96.f)), };
+        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, NULL); // 시우님이 도와주신 코드 클라이언트 좌표로 변경
         SetWindowPos(
             hwnd,
             NULL,
             NULL,
             NULL,
-            static_cast<int>(ceil(1280.f * dpi / 96.f)),
-            static_cast<int>(ceil(720.f * dpi / 96.f)),
+            rect.right - rect.left,
+            rect.bottom - rect.top,
             SWP_NOMOVE);
 
         D2DRenderer::getIncetance().InitDirect2D(hwnd);
@@ -58,6 +61,7 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
 
     InputManager::GetInstance().InitInput(hwnd);
     deltaTime.InitTime();
+
 }
 
 void WinGameApp::Run()

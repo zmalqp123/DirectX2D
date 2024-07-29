@@ -4,17 +4,12 @@
 #include <vector>
 class Camera : public Component
 {
-	//static std::vector<Camera*> allCamera;
 public:
-	Camera() {
-		//allCamera.push_back(this);
-	};
-	virtual ~Camera() {
-		/*auto it = std::find(allCamera.begin(), allCamera.end(), this);
-		if (it != allCamera.end()) {
-			allCamera.erase(it);
-		}*/
-	};
+	Camera() {};
+	virtual ~Camera() {};
+
+	Vector2 ScreenToWorldPosition(Vector2 position);
+	Vector2 WorldToScreenPosition(Vector2 position);
 
 	AABB cameraRect;
 };

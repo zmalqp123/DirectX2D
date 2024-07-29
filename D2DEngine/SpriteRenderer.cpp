@@ -30,8 +30,8 @@ void SpriteRenderer::LoadTexture(const std::wstring strFilePath)
 		m_DstRect.bottom = size.height;
 		m_SrcRect = m_DstRect;
 
-		m_ImageTransform = D2D1::Matrix3x2F::Scale(-1.0f, 1.0f, D2D1::Point2F(0, 0)) *
-			D2D1::Matrix3x2F::Translation(size.width / 2.f, size.height / 2.f);
+		m_ImageTransform = D2D1::Matrix3x2F::Scale(1.0f, 1.0f, D2D1::Point2F(0, 0)) *
+			D2D1::Matrix3x2F::Translation(size.width * -1 / 2.f, size.height / 2.f);
 	}
 }
 

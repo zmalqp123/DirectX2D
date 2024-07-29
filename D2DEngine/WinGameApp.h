@@ -22,7 +22,7 @@ public:
 
 	// 자식 클래스가 재정의 가능하도록 virtual keyword 를 붙인다.
 	virtual void Initialize(HINSTANCE hInstance, int nCmdShow);
-	virtual void Run();
+	void Run();
 	virtual void FixedUpdate();
 	virtual void Update(float deltaTime);
 	virtual void LateUpdate();

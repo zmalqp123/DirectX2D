@@ -1,7 +1,8 @@
 #pragma once
 #include "Collider.h"
 #include "AABB.h"
-class BoxCollider : public Collider
+#include "Renderer.h"
+class BoxCollider : public Collider, public Renderer
 {
 private:
 	AABB m_Collider;
@@ -25,5 +26,9 @@ public:
 	void SetOffset(const Vector2& _offset);
 	void SetCenter(const Vector2& _center);
 	void SetExtent(const Vector2& _extent);
+
+	// Renderer을(를) 통해 상속됨
+	AABB GetBound() override;
+	void Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat) override;
 };
 

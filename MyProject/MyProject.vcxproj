@@ -108,7 +108,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d2d1.lib;dwrite.lib;windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d2d1.lib;windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,6 +131,9 @@
     <ClCompile Include="CameraMoving.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="MyProject.cpp" />
+    <ClCompile Include="PlayerDodgeRoll.cpp" />
+    <ClCompile Include="PlayerIdle.cpp" />
+    <ClCompile Include="PlayerWalk.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D2DEngine\D2DEngine.vcxproj">
@@ -141,6 +144,9 @@
     <ClInclude Include="CameraMoving.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MyGame.h" />
+    <ClInclude Include="PlayerDodgeRoll.h" />
+    <ClInclude Include="PlayerIdle.h" />
+    <ClInclude Include="PlayerWalk.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

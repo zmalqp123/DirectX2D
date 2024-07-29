@@ -24,7 +24,7 @@ public:
 	virtual void OnEndOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 };
 
-class Collider : public Component
+class Collider : virtual public Component
 {
 protected:
 	ColliderType m_ColliderType = ColliderType::None;

@@ -7,6 +7,7 @@
 #include <dwrite.h>
 #include <comdef.h>
 #pragma comment(lib, "d2d1.lib")
+#pragma comment(lib, "dwrite.lib")
 #pragma comment(lib,"windowscodecs.lib")
 #include <dxgi1_4.h>
 //#include <string>
