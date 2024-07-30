@@ -106,6 +106,13 @@ public:
 		return length;
 	}
 
+	static float DotProduct(const Vector2& a, const Vector2& b) {
+		return a.x * b.x + a.y * b.y;
+	}
+
+	static float CrossProduct(const Vector2& a, const Vector2& b) {
+		return a.x * b.y - a.y * b.x;
+	}
 };
 
 class Vector3 : public D2D_VECTOR_3F

@@ -19,15 +19,18 @@
     <Filter Include="소스 파일\Components\Player">
       <UniqueIdentifier>{9f173bd5-42aa-4244-95da-3f4d24c38476}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Components\Generator">
+      <UniqueIdentifier>{1dbea1c7-a12a-4f92-b8ba-e06183a877f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Components\Bullet">
+      <UniqueIdentifier>{8d8a28c8-ba4a-4dc8-a969-6574102f5f4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyProject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MyGame.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraMoving.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PlayerIdle.cpp">
@@ -39,6 +42,18 @@
     <ClCompile Include="PlayerDodgeRoll.cpp">
       <Filter>소스 파일\Components\Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>소스 파일\Components\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일\Components\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraMoving.cpp">
+      <Filter>소스 파일\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -46,9 +61,6 @@
     </ClInclude>
     <ClInclude Include="MyGame.h">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraMoving.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PlayerIdle.h">
       <Filter>소스 파일\Components\Player</Filter>
@@ -58,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="PlayerWalk.h">
       <Filter>소스 파일\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>소스 파일\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
+      <Filter>소스 파일\Components\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>소스 파일\Components\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraMoving.h">
+      <Filter>소스 파일\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

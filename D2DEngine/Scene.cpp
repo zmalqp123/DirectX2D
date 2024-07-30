@@ -6,8 +6,9 @@
 #include "Camera.h"
 #include "SpriteAnimation.h"
 #include "Rigidbody2D.h"
-
+#include "InputManager.h"
 #include <algorithm>
+#include "PublicData.h"
 
 Scene::Scene()
 {
@@ -60,7 +61,7 @@ void Scene::Update(float deltaTime)
 	for (int i = 0; i < colliders.size(); i++) {
 
 		for (int target = i + 1; target < colliders.size(); target++) {
-			Vector2 resolution;
+			Vector2 resolution; // 충돌 결과지점?
 			if (colliders[i]->gameObject == colliders[target]->gameObject) continue;
 			if (!colliders[i]->isCollide(colliders[target], resolution)) continue;
 
@@ -71,9 +72,11 @@ void Scene::Update(float deltaTime)
 				aVelocity = colliders[i]->gameObject->transform->m_RelativeLocation - colliders[i]->prevPosition;
 				bVelocity = colliders[target]->gameObject->transform->m_RelativeLocation - colliders[target]->prevPosition;
 
+				// kinemetic검사 (kinemetic이 true면 다른 오브젝트의 물리충돌에 반응 안함.)
+				// If IsKinematic is set to true, the object will not respond to physical collisions. FUXX Unicode hangle.
 				if (!colliders[i]->isKinemetic && !colliders[target]->isKinemetic) {
-					colliders[i]->AddPosition({ resolution.x / 2 , resolution.y / 2 });
-					colliders[target]->AddPosition({ -resolution.x / 2 , -resolution.y / 2 });
+					colliders[i]->AddPosition({ resolution.x / 2.f , resolution.y / 2.f });
+					colliders[target]->AddPosition({ -resolution.x / 2.f , -resolution.y / 2.f });
 				}
 				else if (!colliders[i]->isKinemetic) {
 					colliders[i]->AddPosition({ resolution.x , resolution.y });
@@ -117,17 +120,16 @@ void Scene::Update(float deltaTime)
 		pColl->ProcessOverlap();
 	}
 }
-int count = 0;
+//int count = 0;
 void Scene::Render(D2DRenderer* _render)
 {
 	D2D1_MATRIX_3X2_F c = cam->transform->m_WorldTransform;
-	D2D1_VECTOR_2F center = { 0.f, 0.f };
-	D2D1_VECTOR_2F extent = { 640.f, 360.f };
-	D2D1_VECTOR_2F centerPos = {
+	Vector2 extent = PublicData::GetInstance().GetScreenSize() / 2.f;//{ 640.f, 360.f };
+	Vector2 centerPos = {
 		c.m[2][0],
 		c.m[2][1]
 	};
-	D2D1_VECTOR_2F extentPos = {
+	Vector2 extentPos = {
 		c.m[0][0] * extent.x + c.m[1][0] * extent.y,
 		c.m[0][1] * extent.x + c.m[1][1] * extent.y
 	};
@@ -163,20 +165,20 @@ void Scene::Render(D2DRenderer* _render)
 	//		cRender->Render(cameraMat);
 	//	}
 	//}
-	count = 0;
+	//count = 0;
 	for (auto r : renderer) {
 		AABB lab = r->GetBound();
 		bool check = camAABB.CheckIntersect(lab);
 		if (check) {
 			r->Render(cameraMat);
-			count++;
+			//count++;
 		}
 	}
 
-	D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
-	std::wstring tempS = std::to_wstring(count);
+	//D2DRenderer::getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
+	//std::wstring tempS = std::to_wstring(count);
 
-	_render->DrawStringText(tempS.c_str());
+	//_render->DrawStringText(tempS.c_str());
 }
 
 void Scene::Clear()

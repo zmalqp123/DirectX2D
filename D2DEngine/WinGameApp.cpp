@@ -2,6 +2,7 @@
 #include "WinGameApp.h"
 #include <cmath>
 #include "InputManager.h"
+#include "PublicData.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -41,9 +42,10 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
     if (hwnd)
     {
         float dpi = GetDpiForWindow(hwnd);
+        float sizeX = static_cast<int>(ceil(1280.f * dpi / 96.f));
+        float sizeY = static_cast<int>(ceil(720.f * dpi / 96.f));
+        RECT rect = { 0, 0, sizeX, sizeY};
 
-        RECT rect = { 0,0, static_cast<int>(ceil(1280.f * dpi / 96.f)),
-            static_cast<int>(ceil(720.f * dpi / 96.f)), };
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, NULL); // 시우님이 도와주신 코드 클라이언트 좌표로 변경
         SetWindowPos(
             hwnd,
@@ -57,13 +59,17 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
         D2DRenderer::getIncetance().InitDirect2D(hwnd);
         ShowWindow(hwnd, SW_SHOWNORMAL);
         UpdateWindow(hwnd);
+        
+        PublicData::GetInstance().SetHWND(hwnd);
+        PublicData::GetInstance().SetScreenSize(Vector2( sizeX, sizeY ));
     }
+
 
     InputManager::GetInstance().InitInput(hwnd);
     deltaTime.InitTime();
 
 }
-
+int FPS = 0;
 void WinGameApp::Run()
 {
 	// 공통으로 사용하는 윈도우 게임 루프를 작성한다.
@@ -73,6 +79,7 @@ void WinGameApp::Run()
     bool bQuit = false;
 
     while (!bQuit) {
+        bool wheelMoved = false;
         while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             if (msg.message == WM_QUIT) {
                 bQuit = true;
@@ -85,12 +92,16 @@ void WinGameApp::Run()
             {
                 InputManager::GetInstance().KeyUp(msg.wParam);
             }
+            else if (msg.message == WM_MOUSEWHEEL) {
+                InputManager::GetInstance().MouseWheel(GET_WHEEL_DELTA_WPARAM(msg.wParam));
+                wheelMoved = true;
+            }
             else {
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
             }
         }
-        InputManager::GetInstance().UpdateMouse();
+        InputManager::GetInstance().UpdateMouse(wheelMoved);
         deltaTime.UpdateTime();
         
         // 이걸 사용하면 화면 크기를 마음대로 변경 가능.
@@ -139,6 +150,11 @@ void WinGameApp::LateUpdate()
 
 void WinGameApp::Render(D2DRenderer* _render)
 {
+    _render->getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
+    auto str = std::to_wstring(deltaTime.GetFPS()); 
+    str += L", ";
+    str += std::to_wstring(_render->GetUsedVRAM());
+    _render->DrawStringText(str.c_str());
 }
 
 void WinGameApp::Uninitialize()

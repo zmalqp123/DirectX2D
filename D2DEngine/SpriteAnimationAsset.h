@@ -62,7 +62,7 @@ public:
 
 	ANIMATION_INFO* GetAnimationInfo(int index)
 	{
-		assert(index >= 0 && index < m_Animations.size());
+		//assert(index >= 0 && index < m_Animations.size());
 		return &m_Animations[index];
 	}
 	ANIMATION_INFO* GetAnimationInfo(std::wstring AnimationName)

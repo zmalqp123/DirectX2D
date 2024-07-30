@@ -153,6 +153,8 @@ void D2DRenderer::DrawLine(D2D1_POINT_2F p0, D2D1_POINT_2F p1, float width, D2D1
 
 void D2DRenderer::DrawHollowRectangle(float x1, float y1, float x2, float y2, float width, D2D1::ColorF color)
 {
+    if (g_brush != nullptr)
+        g_brush->Release();
     HRESULT hr = _RenderTarget->CreateSolidColorBrush(color, &g_brush);
     if (SUCCEEDED(hr)) {
         _RenderTarget->DrawLine({x1, y1}, {x2, y1}, g_brush, width);

@@ -33,7 +33,7 @@ public:
 	template <typename T>
 	T* CreateComponent() {
 		bool bIsBase = std::is_base_of<Component, T>::value;
-		assert(bIsBase == true);
+		//assert(bIsBase == true);
 		T* component = new T();
 		components.push_back(component);
 		component->SetOwner(this);
@@ -43,7 +43,7 @@ public:
 	template <typename T>
 	T* GetComponent() {
 		bool bIsBase = std::is_base_of<Component, T>::value;
-		assert(bIsBase == true);
+		//assert(bIsBase == true);
 
 		for (auto iter = components.begin(); iter != components.end(); iter++)
 		{

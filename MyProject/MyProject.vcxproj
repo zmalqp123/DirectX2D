@@ -121,16 +121,19 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CameraMoving.cpp" />
+    <ClCompile Include="Generator.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="MyProject.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="PlayerDodgeRoll.cpp" />
     <ClCompile Include="PlayerIdle.cpp" />
     <ClCompile Include="PlayerWalk.cpp" />
@@ -141,9 +144,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CameraMoving.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Generator.h" />
     <ClInclude Include="MyGame.h" />
+    <ClInclude Include="PlayerController.h" />
     <ClInclude Include="PlayerDodgeRoll.h" />
     <ClInclude Include="PlayerIdle.h" />
     <ClInclude Include="PlayerWalk.h" />

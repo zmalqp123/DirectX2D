@@ -41,6 +41,7 @@ bool SpriteAnimationAsset::LoadAnimationFromCSV(int index, const wchar_t* fileNa
 	std::wifstream file(fileName);
 	if (!file.is_open()) {
 		std::cout << "파일을 열 수 없습니다." << std::endl;
+		std::wcout << fileName << std::endl;
 		return false;
 	}
 	std::wstring line;			// 한줄의 문자열	

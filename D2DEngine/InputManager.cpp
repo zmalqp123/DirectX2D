@@ -55,6 +55,11 @@ void InputManager::KeyUp(unsigned int key)
 	isKey[key] = false;
 }
 
+void InputManager::MouseWheel(int value)
+{
+	curMouse.wheel = value;
+}
+
 bool InputManager::IsKeyDown(unsigned int key)
 {
 	return isKeyDown[key];
@@ -70,7 +75,12 @@ bool InputManager::IsKey(unsigned int key)
 	return isKey[key];
 }
 
-void InputManager::UpdateMouse()
+int InputManager::IsMouseWheel()
+{
+	return curMouse.wheel;
+}
+
+void InputManager::UpdateMouse(bool isWheel)
 {
 	prevMouse = curMouse;
 
@@ -80,8 +90,9 @@ void InputManager::UpdateMouse()
 
 	curMouse.x = pt.x;
 	curMouse.y = pt.y;
-	curMouse.wheel = 0;
-	
+	if(isWheel == false)
+		curMouse.wheel = 0;
+
 	curMouse.left = (GetKeyState(VK_LBUTTON) & 0x8000) != 0;
 	curMouse.right = (GetKeyState(VK_RBUTTON) & 0x8000) != 0;
 	curMouse.middle = (GetKeyState(VK_MBUTTON) & 0x8000) != 0;

@@ -13,10 +13,11 @@ public:
 	void ResetInput();
 	void KeyDown(unsigned int key);
 	void KeyUp(unsigned int key);
+	void MouseWheel(int value);
 	bool IsKeyDown(unsigned int key);
 	bool IsKeyUp(unsigned int key);
 	bool IsKey(unsigned int key);
-
+	int IsMouseWheel();
 	struct MouseState
 	{
 		MouseState()
@@ -37,7 +38,7 @@ public:
 		bool middle;
 	};
 
-	void UpdateMouse();
+	void UpdateMouse(bool isWheel = false);
 
 	bool IsSame(const MouseState& a, const MouseState& b);
 

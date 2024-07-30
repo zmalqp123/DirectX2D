@@ -106,6 +106,9 @@
     <Filter Include="소스 파일\Component\Renderer\SpriteRenderer">
       <UniqueIdentifier>{5a13888c-cddf-4ee2-8432-0e15cd351d64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\PublicData">
+      <UniqueIdentifier>{7e90483e-f130-41da-89a6-e573365417a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -201,6 +204,9 @@
     <ClInclude Include="InputManager.h">
       <Filter>소스 파일\Manager\InputManager</Filter>
     </ClInclude>
+    <ClInclude Include="PublicData.h">
+      <Filter>소스 파일\PublicData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -286,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\Manager\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicData.cpp">
+      <Filter>소스 파일\PublicData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

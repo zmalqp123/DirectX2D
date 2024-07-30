@@ -21,3 +21,8 @@ float DeltaTime::GetDeltaTime()
 {
 	return deltaTime;
 }
+
+float DeltaTime::GetFPS()
+{
+	return 1.0f / deltaTime;
+}
