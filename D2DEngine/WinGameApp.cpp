@@ -130,7 +130,7 @@ void WinGameApp::Run()
 
         Update(deltaTime.GetDeltaTime());
         D2DRenderer::getIncetance().BeginDraw();
-        D2DRenderer::getIncetance().Clear(D2D1::ColorF(D2D1::ColorF::Coral));
+        D2DRenderer::getIncetance().Clear(D2D1::ColorF(D2D1::ColorF::Black));
         Render(&D2DRenderer::getIncetance());
         D2DRenderer::getIncetance().EndDraw();
 
@@ -150,11 +150,11 @@ void WinGameApp::LateUpdate()
 
 void WinGameApp::Render(D2DRenderer* _render)
 {
-    _render->getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
+   /* _render->getRenderTarget().SetTransform(D2D1::Matrix3x2F::Identity());
     auto str = std::to_wstring(deltaTime.GetFPS()); 
     str += L", ";
     str += std::to_wstring(_render->GetUsedVRAM());
-    _render->DrawStringText(str.c_str());
+    _render->DrawStringText(str.c_str());*/
 }
 
 void WinGameApp::Uninitialize()

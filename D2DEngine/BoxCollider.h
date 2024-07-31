@@ -13,7 +13,7 @@ public:
 		m_CollisionType = cType;
 
 		//test
-		m_Collider.m_Center = { 0.f, 50.f };
+		m_Collider.m_Center = { 0.f, 0.f };
 		m_Collider.m_Extent = { 50.f, 50.f };
 
 		offset = { 0.f, 0.f };

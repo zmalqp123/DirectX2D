@@ -24,3 +24,23 @@ Vector2 Camera::WorldToScreenPosition(Vector2 position)
 {
 	return Vector2();
 }
+
+AABB Camera::GetCameraRect()
+{
+	D2D1_MATRIX_3X2_F c = gameObject->transform->m_WorldTransform;
+	Vector2 extent = PublicData::GetInstance().GetScreenSize() / 2.f;//{ 640.f, 360.f };
+	Vector2 centerPos = {
+		c.m[2][0],
+		c.m[2][1]
+	};
+	Vector2 extentPos = {
+		c.m[0][0] * extent.x + c.m[1][0] * extent.y,
+		c.m[0][1] * extent.x + c.m[1][1] * extent.y
+	};
+
+	AABB camAABB;
+	camAABB.m_Center = centerPos;
+	camAABB.m_Extent = extentPos;
+
+	return camAABB;
+}

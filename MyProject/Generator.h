@@ -6,7 +6,7 @@ class Bullet;
 class Generator : public Component
 {
 	float timer = 0.f;
-	float maxTimer = 0.5f;
+	float maxTimer = 0.3f;
 public:
 	Transform* target = nullptr;
 	std::stack<Bullet*> pools;

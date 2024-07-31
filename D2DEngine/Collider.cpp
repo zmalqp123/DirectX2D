@@ -24,6 +24,19 @@ void Collider::ProcessOverlap()
 		}
 	}
 
+	//stay
+	for (auto& pColliderComponent : m_ColliderStateCurr) {
+		if (m_ColliderStatePrev.find(pColliderComponent) != m_ColliderStatePrev.end()) {
+			for (auto c : gameObject->components) {
+				if (auto notify = dynamic_cast<IColliderNotify*>(c)) {
+					if (notify != nullptr) {
+						notify->OnStayOverlap(this, pColliderComponent);
+					}
+				}
+			}
+		}
+	}
+
 	//end
 	for (auto& pColliderComponent : m_ColliderStatePrev) {
 		if (m_ColliderStateCurr.find(pColliderComponent) == m_ColliderStateCurr.end()) {

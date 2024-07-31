@@ -41,6 +41,8 @@ void SpriteRenderer::Update(float deltaTime)
 
 void SpriteRenderer::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat)
 {
+	if (gameObject->isActive == false || (gameObject->transform->m_pParentScene != nullptr && gameObject->transform->m_pParentScene->gameObject->isActive == false))
+		return;
 	D2D1_MATRIX_3X2_F m_ScreenTransform =
 		D2D1::Matrix3x2F::Scale(1.0f, -1.0f) *
 		D2D1::Matrix3x2F::Translation(640.f, 360.f);
@@ -56,6 +58,8 @@ void SpriteRenderer::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X
 
 void SpriteRenderer::Render(D2D1_MATRIX_3X2_F cameraMat)
 {
+	if (gameObject->isActive == false || (gameObject->transform->m_pParentScene != nullptr && gameObject->transform->m_pParentScene->gameObject->isActive == false))
+		return;
 	auto pRenderTarget = &D2DRenderer::getRenderTarget();
 
 	D2D1_MATRIX_3X2_F m_ScreenTransform =

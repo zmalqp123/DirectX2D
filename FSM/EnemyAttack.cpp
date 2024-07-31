@@ -15,7 +15,7 @@ void EnemyAttack::Update(float deltaTime)
 
 	float dist = disX * disX + disY * disY;
 	bool nothing = dist > (attackDistance * attackDistance);
-	if (nothing && fsm->gameObject->spriteAnim->GetMaxIndex() - 1 == fsm->gameObject->spriteAnim->m_FrameIndexCurr) {
+	if (nothing && fsm->gameObject->spriteAnim->isLastFrame()) {
 		fsm->SetState("Tracking");
 	}
 }

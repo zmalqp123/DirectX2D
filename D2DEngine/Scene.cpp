@@ -123,20 +123,22 @@ void Scene::Update(float deltaTime)
 //int count = 0;
 void Scene::Render(D2DRenderer* _render)
 {
-	D2D1_MATRIX_3X2_F c = cam->transform->m_WorldTransform;
-	Vector2 extent = PublicData::GetInstance().GetScreenSize() / 2.f;//{ 640.f, 360.f };
-	Vector2 centerPos = {
-		c.m[2][0],
-		c.m[2][1]
-	};
-	Vector2 extentPos = {
-		c.m[0][0] * extent.x + c.m[1][0] * extent.y,
-		c.m[0][1] * extent.x + c.m[1][1] * extent.y
-	};
+	//D2D1_MATRIX_3X2_F c = cam->transform->m_WorldTransform;
+	//Vector2 extent = PublicData::GetInstance().GetScreenSize() / 2.f;//{ 640.f, 360.f };
+	//Vector2 centerPos = {
+	//	c.m[2][0],
+	//	c.m[2][1]
+	//};
+	//Vector2 extentPos = {
+	//	c.m[0][0] * extent.x + c.m[1][0] * extent.y,
+	//	c.m[0][1] * extent.x + c.m[1][1] * extent.y
+	//};
 
-	AABB camAABB;
-	camAABB.m_Center = centerPos;
-	camAABB.m_Extent = extentPos;
+	//AABB camAABB;
+	//camAABB.m_Center = centerPos;
+	//camAABB.m_Extent = extentPos;
+
+	AABB camAABB = camera->GetCameraRect();
 
 	//auto temp = D2D1::Matrix3x2F::Translation(gq->transform->m_RelativeLocation.x, gq->transform->m_RelativeLocation.y) * gq->transform->m_WorldTransform;
 	// 카메라 센터 * 카메라 월드매트릭스 = 카메라 센터인 벡터? 뭐라하지 테스트해봐야함
@@ -191,4 +193,10 @@ void Scene::Clear()
 
 void Scene::SetCullingBound(AABB* pBound)
 {
+}
+
+void Scene::SetMainCamera(Camera* _cam)
+{
+	camera = _cam;
+	cam = _cam->gameObject;
 }

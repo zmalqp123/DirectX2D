@@ -256,8 +256,12 @@ void D2DRenderer::DrawStringText(const WCHAR* _text)
     );
 }
 
-void D2DRenderer::DrawStringTextw(const WCHAR* _text, D2D1_MATRIX_3X2_F transform)
+void D2DRenderer::DrawStringTextw(const WCHAR* _text, D2D1_MATRIX_3X2_F transform, D2D1::ColorF color)
 {
+    if (g_brush != nullptr)
+        g_brush->Release();
+    HRESULT hr = _RenderTarget->CreateSolidColorBrush(color, &g_brush);
+
     _RenderTarget->SetTransform(transform);
     D2D1_SIZE_F size = _RenderTarget->GetSize();
 

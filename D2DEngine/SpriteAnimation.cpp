@@ -72,6 +72,8 @@ void SpriteAnimation::Update(float fTimeElapsed)
 
 void SpriteAnimation::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3X2_F cameraMat)
 {
+	if (gameObject->isActive == false || (gameObject->transform->m_pParentScene != nullptr && gameObject->transform->m_pParentScene->gameObject->isActive == false))
+		return;
 	if (m_pAnimationInfo == nullptr)
 		return;
 	D2D1_MATRIX_3X2_F m_ScreenTransform = 
@@ -89,6 +91,8 @@ void SpriteAnimation::Render(ID2D1HwndRenderTarget* pRenderTarget, D2D1_MATRIX_3
 
 void SpriteAnimation::Render(D2D1_MATRIX_3X2_F cameraMat)
 {
+	if (gameObject->isActive == false || (gameObject->transform->m_pParentScene != nullptr && gameObject->transform->m_pParentScene->gameObject->isActive == false))
+		return;
 	if (m_pAnimationInfo == nullptr)
 		return;
 	auto pRenderTarget = &D2DRenderer::getRenderTarget();
@@ -138,4 +142,9 @@ AABB SpriteAnimation::GetBound()
 int SpriteAnimation::GetMaxIndex()
 {
 	return m_pAnimationInfo->Frames.size();
+}
+
+bool SpriteAnimation::IsLastFrame()
+{
+	return m_pAnimationInfo->Frames.size() - 1 == m_FrameIndexCurr;
 }

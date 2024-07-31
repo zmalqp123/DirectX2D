@@ -21,6 +21,7 @@ public:
 	Vector2 resoultion;
 	virtual void OnBlock(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 	virtual void OnBeginOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
+	virtual void OnStayOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 	virtual void OnEndOverlap(Collider* pOwnedComponent, Collider* pOtherComponent) = 0;
 };
 

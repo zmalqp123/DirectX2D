@@ -109,6 +109,9 @@
     <Filter Include="소스 파일\PublicData">
       <UniqueIdentifier>{7e90483e-f130-41da-89a6-e573365417a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Component\Renderer\TextRenderer">
+      <UniqueIdentifier>{f9634b61-c38b-4ea9-866a-5edf225dbdd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="PublicData.h">
       <Filter>소스 파일\PublicData</Filter>
     </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>소스 파일\Component\Renderer\TextRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -295,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="PublicData.cpp">
       <Filter>소스 파일\PublicData</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>소스 파일\Component\Renderer\TextRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

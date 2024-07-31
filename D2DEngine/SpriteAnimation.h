@@ -39,5 +39,7 @@ public:
 	AABB GetBound();
 
 	int GetMaxIndex();
+
+	bool IsLastFrame();
 };
 

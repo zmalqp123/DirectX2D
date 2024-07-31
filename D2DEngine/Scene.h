@@ -4,6 +4,7 @@
 #include "AABB.h"
 #include <vector>
 //class GameObject;
+class Camera;
 class D2DRenderer;
 class Scene : public Object
 {
@@ -17,6 +18,7 @@ public:
 	AABB m_CullingBoundDefault;
 
 	GameObject* cam = nullptr;
+	Camera* camera = nullptr;
 	D2D1_MATRIX_3X2_F cameraMat;
 
 	void Start();
@@ -24,6 +26,7 @@ public:
 	void Render(D2DRenderer* _render);
 	void Clear();
 	void SetCullingBound(AABB* pBound);
+	void SetMainCamera(Camera* cam);
 	
 	template<typename T>
 	T* CreateGameObject() {

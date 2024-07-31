@@ -10,7 +10,7 @@ public:
 	Transform* target = nullptr;
 	Vector2 direction = { 0.f, 0.f };
 	Generator* gn = nullptr;
-	float moveSpeed = 30.f;
+	float moveSpeed = 200.f;
 
 	void virtual Init();
 	void virtual Update(float delta);

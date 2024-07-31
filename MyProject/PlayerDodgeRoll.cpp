@@ -7,6 +7,8 @@
 #include "../D2DEngine/Movement.h"
 #include "PlayerWalk.h"
 #include <cmath>
+#include "../D2DEngine/BoxCollider.h"
+#include "PlayerController.h"
 void PlayerDodgeRoll::Enter()
 {
 	timer = maxTimer;
@@ -33,28 +35,32 @@ void PlayerDodgeRoll::Enter()
 	}
 	fsm->gameObject->GetComponent<SpriteAnimation>()->SetAnimation(animSet, cross < 0 ? false : true);
 	//fsm->gameObject->GetComponent<SpriteAnimation>()->SetAnimation(8, false);
+
+	fsm->gameObject->GetComponent<PlayerController>()->isDodgeRoll = true;
 }
 
 void PlayerDodgeRoll::Update(float deltaTime)
 {
 	timer -= deltaTime;
 
-	movement->SetSpeed(500.f * timer);
+	movement->SetSpeed(300.f * timer);
 
-	if ((InputManager::GetInstance().IsKey(0x44) ||
-		InputManager::GetInstance().IsKey(0x41) ||
-		InputManager::GetInstance().IsKey(0x57) ||
-		InputManager::GetInstance().IsKey(0x53)) &&
-		timer < 0.f){
-		fsm->SetState("Walk");
-	}
 
 	if (timer < 0.f) {
+		if ((InputManager::GetInstance().IsKey(0x44) ||
+			InputManager::GetInstance().IsKey(0x41) ||
+			InputManager::GetInstance().IsKey(0x57) ||
+			InputManager::GetInstance().IsKey(0x53)))
+		{
+			fsm->SetState("Walk");
+		}
+
 		fsm->SetState("Idle");
 	}
 }
 
 void PlayerDodgeRoll::Exit()
 {
+	fsm->gameObject->GetComponent<PlayerController>()->isDodgeRoll = false;
 	movement->SetSpeed(0.f);
 }

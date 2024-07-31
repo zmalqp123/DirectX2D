@@ -7,6 +7,7 @@
 
 bool BoxCollider::isCollide(Collider* collider, Vector2& resolution)
 {
+	if (collider->gameObject->isActive == false) return false;
     if (collider->GetColliderType() == ColliderType::Box) {
 		D2D1_MATRIX_3X2_F c = gameObject->transform->m_WorldTransform;
 
@@ -44,6 +45,7 @@ bool BoxCollider::isCollide(Collider* collider, Vector2& resolution)
 
 void BoxCollider::Render(D2D1_MATRIX_3X2_F cameraMat)
 {
+#ifdef DEBUG
 	if (gameObject->isActive == false) return;
 	auto pRenderTarget = &D2DRenderer::getRenderTarget();
 
@@ -64,6 +66,7 @@ void BoxCollider::Render(D2D1_MATRIX_3X2_F cameraMat)
 		2.f,
 		D2D1::ColorF::LimeGreen		
 	);
+#endif
 }
 
 

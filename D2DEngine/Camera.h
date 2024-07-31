@@ -11,6 +11,6 @@ public:
 	Vector2 ScreenToWorldPosition(Vector2 position);
 	Vector2 WorldToScreenPosition(Vector2 position);
 
-	AABB cameraRect;
+	AABB GetCameraRect();
 };
 
