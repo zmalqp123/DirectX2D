@@ -38,7 +38,7 @@ void WinGameApp::Initialize(HINSTANCE hInstance, int nCmdShow)
         NULL,
         hInstance,
         this);
-
+    //
     if (hwnd)
     {
         float dpi = GetDpiForWindow(hwnd);
